@@ -1,0 +1,942 @@
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/layout.js:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./app/layout.js:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/layout.js:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./app/layout.js:2:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+[31m[1m>[0m [90m1 |[0m [36mimport[0m [33mModelViewer[0m [36mfrom[0m [32m"@/components/ModelViewer"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m2 |[0m
+  [90m3 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m4 |[0m
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/page.js:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./app/page.js:1:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./app/page.js:1:1
+Module not found: Can't resolve '@/components/ModelViewer'
+> 1 | import ModelViewer from "@/components/ModelViewer";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  2 |
+  3 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  4 |
+
+Import map: aliased to relative './components/ModelViewer' inside of [project]/
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  [90m1 |[0m [36mimport[0m { [33mManrope[0m, [33mSpace_Grotesk[0m } [36mfrom[0m [32m"next/font/google"[0m;
+[31m[1m>[0m [90m2 |[0m [36mimport[0m [32m"./globals.css"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m3 |[0m
+  [90m4 |[0m [36mconst[0m display = [33mSpace_Grotesk[0m({
+  [90m5 |[0m   variable: [32m"--font-display"[0m,
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] ./app/layout.js:2:1
+Module not found: Can't resolve './globals.css'
+  1 | import { Manrope, Space_Grotesk } from "next/font/google";
+> 2 | import "./globals.css";
+    | ^^^^^^^^^^^^^^^^^^^^^^^
+  3 |
+  4 | const display = Space_Grotesk({
+  5 |   variable: "--font-display",
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  [90m2 |[0m [36mimport[0m [33mFoundersRail[0m [36mfrom[0m [32m"@/components/FoundersRail"[0m;
+  [90m3 |[0m [36mimport[0m [33mVisionMission[0m [36mfrom[0m [32m"@/components/VisionMission"[0m;
+[31m[1m>[0m [90m4 |[0m [36mimport[0m [33mPlantsGroup[0m [36mfrom[0m [32m"@/components/PlantsGroup"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m
+  [90m6 |[0m [36mconst[0m navItems = [[32m"Home"[0m, [32m"About Us"[0m, [32m"Products"[0m, [32m"Import"[0m, [32m"News"[0m, [32m"Gallery"[0m, [32m"Contact"[0m];
+  [90m7 |[0m
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] Uncaught Error: ./app/page.js:4:1
+Module not found: Can't resolve '@/components/PlantsGroup'
+  2 | import FoundersRail from "@/components/FoundersRail";
+  3 | import VisionMission from "@/components/VisionMission";
+> 4 | import PlantsGroup from "@/components/PlantsGroup";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
+  7 |
+
+Import map: aliased to relative './components/PlantsGroup' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (Error: ./app/page.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (Error: (./app/page.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[browser] THREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
