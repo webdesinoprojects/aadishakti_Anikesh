@@ -2,10 +2,12 @@
 
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PresentationControls, OrbitControls, useGLTF } from "@react-three/drei";
+import { PresentationControls, OrbitControls, useGLTF, Environment } from "@react-three/drei";
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import FoundryModel from "./FoundryModel";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,15 +15,24 @@ if (typeof window !== "undefined") {
 
 const MODEL_URL = "/models/aadishakti_battery_v3.glb";
 
-function BatteryModel() {
+function BatteryModel({ overflowLayerRef }) {
   const { scene } = useGLTF(MODEL_URL);
   const model = useMemo(() => scene.clone(true), [scene]);
   const materialGroups = useRef({ body: [], labels: [] });
   const groupRef = useRef();
+  const foundryGroupRef = useRef();
   const modelRef = useRef();
   const mouseNDC = useRef(new THREE.Vector2(-999, -999));
-  const animState = useRef({ explosion: 0, gravityDrop: 0 });
+  const animState = useRef({ 
+    explosion: 0, 
+    gravityDrop: 0, 
+    modelSwap: 0, 
+    pourProgress: 0,
+    solidOpacity: 1,
+    wireOpacity: 0.15
+  });
   const linesMaterialRef = useRef();
+  const solidMaterialRef = useRef();
 
   const fit = useMemo(() => {
     const box = new THREE.Box3().setFromObject(model);
@@ -72,19 +83,14 @@ function BatteryModel() {
           
           randomDirs.push(dir.x, dir.y, dir.z, dir.x, dir.y, dir.z);
 
-          // Calculate exact world targets so it always lands on screen
-          // Raised the floor slightly to ensure it lands right in the middle of the footer
           const worldTargetY = -0.8 + (Math.random() - 0.5) * 1.5;
           const worldTargetX = (Math.random() - 0.5) * 6.5;
           const worldTargetZ = (Math.random() - 0.5) * 2.5;
 
-          // Add fit.center to cancel out the lineSegments position offset
           const localSpreadX = worldTargetX / (fit.scale * 2.0) + fit.center.x;
           const localSpreadZ = worldTargetZ / (fit.scale * 2.0) + fit.center.z;
           const localFloorY = worldTargetY / (fit.scale * 2.0) + fit.center.y;
 
-          // CRITICAL FIX: To prevent the line from collapsing to zero length (which WebGL won't render),
-          // we must preserve the offset of its two vertices relative to its center!
           const cx = (v1.x + v2.x) * 0.5;
           const cy = (v1.y + v2.y) * 0.5;
           const cz = (v1.z + v2.z) * 0.5;
@@ -197,35 +203,48 @@ function BatteryModel() {
     };
   }, [model]);
 
+  const dragState = useRef({ isDragging: false, previousMousePosition: { x: 0, y: 0 } });
+
   useEffect(() => {
     const handlePointerDown = (e) => {
-      if (e.target.closest('a, button')) return; // Don't block clicks on links/buttons
-      modelRef.current.userData.isDragging = true;
-      modelRef.current.userData.previousMousePosition = { x: e.clientX, y: e.clientY };
+      if (e.target.closest('a, button')) return;
+      dragState.current.isDragging = true;
+      dragState.current.previousMousePosition = { x: e.clientX, y: e.clientY };
     };
 
     const handlePointerUp = () => {
-      if (modelRef.current) modelRef.current.userData.isDragging = false;
+      dragState.current.isDragging = false;
     };
 
     const handlePointerMove = (e) => {
       mouseNDC.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouseNDC.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
 
-      if (modelRef.current?.userData.isDragging) {
+      if (dragState.current.isDragging) {
         const deltaMove = {
-          x: e.clientX - modelRef.current.userData.previousMousePosition.x,
-          y: e.clientY - modelRef.current.userData.previousMousePosition.y
+          x: e.clientX - dragState.current.previousMousePosition.x,
+          y: e.clientY - dragState.current.previousMousePosition.y
         };
 
-        modelRef.current.rotation.y += deltaMove.x * 0.005;
-        modelRef.current.rotation.x = THREE.MathUtils.clamp(
-          modelRef.current.rotation.x + deltaMove.y * 0.005,
-          -Math.PI / 4,
-          Math.PI / 4
-        );
+        if (groupRef.current) {
+          groupRef.current.rotation.y += deltaMove.x * 0.005;
+          groupRef.current.rotation.x = THREE.MathUtils.clamp(
+            groupRef.current.rotation.x - deltaMove.y * 0.005,
+            -Math.PI / 4,
+            Math.PI / 4
+          );
+        }
 
-        modelRef.current.userData.previousMousePosition = { x: e.clientX, y: e.clientY };
+        if (foundryGroupRef.current) {
+          foundryGroupRef.current.rotation.y += deltaMove.x * 0.005;
+          foundryGroupRef.current.rotation.x = THREE.MathUtils.clamp(
+            foundryGroupRef.current.rotation.x - deltaMove.y * 0.005,
+            -Math.PI / 4,
+            Math.PI / 4
+          );
+        }
+
+        dragState.current.previousMousePosition = { x: e.clientX, y: e.clientY };
       }
     };
 
@@ -242,23 +261,33 @@ function BatteryModel() {
 
   useFrame((state, delta) => {
     if (typeof window === "undefined") return;
+    
+    // Crossfade models (Swap goes from 0 -> 1 -> 2)
+    const swap = animState.current.modelSwap;
+    const batteryScale = swap <= 1.0 ? 1.0 - swap : swap - 1.0;
+    
+    // Base scale vs Swap scale
+    const foundrySwapScale = swap <= 1.0 ? swap : 2.0 - swap;
+    const baseFoundryScale = window.innerWidth < 768 ? 0.48 : 0.7;
 
-    if (modelRef.current && !modelRef.current.userData.isDragging) {
-      modelRef.current.rotation.y -= delta * 0.05; // Much slower auto-rotate
+    if (groupRef.current) {
+      groupRef.current.scale.setScalar(fit.scale * batteryScale);
+      groupRef.current.visible = batteryScale > 0.01;
+    }
+    if (foundryGroupRef.current) {
+      foundryGroupRef.current.scale.setScalar(fit.scale * baseFoundryScale * foundrySwapScale);
+      foundryGroupRef.current.visible = foundrySwapScale > 0.01;
     }
 
-    const viewport = window.innerHeight || 1;
-    const progress = THREE.MathUtils.clamp((window.scrollY - viewport * 0.12) / (viewport * 0.62), 0, 1);
-
-    // Fade out base model quickly as we scroll
+    // Material Logic for Battery (Solid vs Wireframe)
     materialGroups.current.body.forEach((material) => {
-      material.opacity = Math.max(0, 1 - progress * 2.0);
-      material.emissiveIntensity = THREE.MathUtils.lerp(0.18, 0.54, progress);
+      material.opacity = animState.current.solidOpacity;
+      material.emissiveIntensity = THREE.MathUtils.lerp(0.54, 0.18, animState.current.solidOpacity);
     });
 
     materialGroups.current.labels.forEach((material) => {
-      material.opacity = Math.max(0, 1 - progress * 2.0);
-      material.emissiveIntensity = THREE.MathUtils.lerp(0.86, 1.25, progress);
+      material.opacity = animState.current.solidOpacity;
+      material.emissiveIntensity = THREE.MathUtils.lerp(1.25, 0.86, animState.current.solidOpacity);
     });
 
     if (linesMaterialRef.current) {
@@ -266,13 +295,11 @@ function BatteryModel() {
       const mouseLocalPos = mouseWorldPos.clone();
       if (groupRef.current) groupRef.current.worldToLocal(mouseLocalPos);
       
-      // Shift mouse to match the lineSegments position offset
       mouseLocalPos.x += fit.center.x;
       mouseLocalPos.y += fit.center.y;
       mouseLocalPos.z += fit.center.z;
 
-      // Fade in lines as we scroll
-      linesMaterialRef.current.uniforms.uOpacity.value = Math.min(1.0, progress * 1.5);
+      linesMaterialRef.current.uniforms.uOpacity.value = animState.current.wireOpacity;
       linesMaterialRef.current.uniforms.uExplosion.value = animState.current.explosion;
       linesMaterialRef.current.uniforms.uGravity.value = animState.current.gravityDrop;
       linesMaterialRef.current.uniforms.uMouse.value.copy(mouseLocalPos);
@@ -381,14 +408,81 @@ function BatteryModel() {
         },
       });
 
-      // 4. Scroll to Footer: Gravity drop and Interactive Pile
+      if (foundryGroupRef.current) {
+        gsap.set(foundryGroupRef.current.position, { x: 0.78, y: -0.02, z: 0 });
+      }
+      
+      // PHASE 2: Founders Section (Foundry Swap + Pouring Animation)
+      const foundersTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".founder-scroll-shell",
+          start: "top bottom",
+          end: "bottom top", // Automatically syncs with the exact length of the horizontal scroll!
+          scrub: 1.5,
+        }
+      });
+      
+      // Swap to Foundry model
+      foundersTl.to(animState.current, {
+        modelSwap: 1,
+        ease: "power2.inOut",
+        duration: 0.2
+      }, 0);
+      
+      // Pouring animation triggers while in Founders section
+      foundersTl.to(animState.current, {
+        pourProgress: 1,
+        ease: "none",
+        duration: 0.8
+      }, 0.2);
+
+      // PHASE 3: Plants Section (Wireframe Battery Swap)
+      const plantsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".plants-section",
+          start: "top bottom",
+          end: "top 20%",
+          scrub: 1.5,
+        }
+      });
+      
+      // Disintegrate Foundry and bring back Battery
+      plantsTl.to(animState.current, {
+        modelSwap: 2,
+        solidOpacity: 0,    // Battery returns, but with NO solid fill
+        wireOpacity: 1.0,   // Battery returns FULLY wireframe
+        ease: "power2.inOut"
+      }, 0);
+      
+      // Shift Battery to right center and make it small for Plants section
+      plantsTl.to(groupRef.current.position, {
+        x: 1.6,
+        y: 0.0,
+        z: 0,
+        ease: "power2.inOut"
+      }, 0);
+      
+      plantsTl.to(groupRef.current.scale, {
+        x: fit.scale * 0.35,
+        y: fit.scale * 0.35,
+        z: fit.scale * 0.35,
+        ease: "power2.inOut"
+      }, 0);
+      
+      plantsTl.to(groupRef.current.rotation, {
+        y: Math.PI * 2.2,
+        x: 0.2,
+        ease: "power2.inOut"
+      }, 0);
+
+      // PARTICLE EXPLOSION (Footer)
       gsap.to(animState.current, {
-        gravityDrop: 1,
+        explosion: 1,
         ease: "power2.inOut",
         scrollTrigger: {
           trigger: ".site-footer",
           start: "top bottom",
-          end: "bottom bottom",
+          end: "top center",
           scrub: 1.2,
         },
       });
@@ -443,6 +537,7 @@ function BatteryModel() {
   }, [fit.scale]);
 
   return (
+    <>
     <group ref={groupRef} scale={fit.scale} position={[0, 0.04, 0]} rotation={[0.04, -0.34, 0]}>
       <group ref={modelRef}>
         <primitive object={model} position={[-fit.center.x, -fit.center.y, -fit.center.z]} />
@@ -451,6 +546,15 @@ function BatteryModel() {
         </lineSegments>
       </group>
     </group>
+    
+    {/* The New Foundry Model Container */}
+    <FoundryModel
+      groupRef={foundryGroupRef}
+      animState={animState}
+      dragState={dragState}
+      overflowLayerRef={overflowLayerRef}
+    />
+    </>
   );
 }
 
@@ -470,6 +574,8 @@ function CameraSetup() {
 }
 
 export default function ModelViewer() {
+  const overflowLayerRef = useRef();
+
   return (
     <div className="model-viewer">
       <Canvas 
@@ -478,15 +584,22 @@ export default function ModelViewer() {
         gl={{ alpha: true, antialias: true }}
       >
         <CameraSetup />
-        <ambientLight intensity={0.62} />
-        <hemisphereLight args={["#fff2d7", "#160806", 1.22]} />
+        <ambientLight intensity={2.5} />
+        <hemisphereLight args={["#fff2d7", "#160806", 2.2]} />
+        <directionalLight position={[0, 0, 5]} intensity={2.5} color="#ffffff" />
+        <directionalLight position={[0, 0, -5]} intensity={2.5} color="#ffffff" />
         <directionalLight position={[3.5, 4.5, 4]} intensity={3.3} color="#fff5e2" />
         <pointLight position={[-3.8, 1.6, 3.2]} intensity={14} color="#c46d32" />
         <pointLight position={[3.2, -2.4, 2.8]} intensity={20} color="#dfb65a" />
         <Suspense fallback={null}>
-          <BatteryModel />
+          <Environment preset="city" />
+          <BatteryModel overflowLayerRef={overflowLayerRef} />
+          <EffectComposer disableNormalPass>
+            <Bloom luminanceThreshold={1} mipmapBlur intensity={1.5} />
+          </EffectComposer>
         </Suspense>
       </Canvas>
+      <div ref={overflowLayerRef} className="foundry-lava-flood" aria-hidden="true" />
     </div>
   );
 }

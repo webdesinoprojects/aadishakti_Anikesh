@@ -43,6 +43,26 @@ const bentoPositions = [
   { gridColumn: "3 / 4", gridRow: "2 / 3" },
 ];
 
+function AnimatedPlantTitle({ title }) {
+  const words = title.split(" ");
+
+  return (
+    <h3 className="plant-title" aria-label={title}>
+      {words.map((word, wordIndex) => (
+        <span className="plant-title-word" aria-hidden="true" key={`${word}-${wordIndex}`}>
+          {Array.from(word).map((character, characterIndex) => (
+            <span className="plant-title-char" key={`${character}-${characterIndex}`}>
+              {character}
+            </span>
+          ))}
+          {wordIndex < words.length - 1 ? " " : null}
+        </span>
+      ))}
+      <span className="plant-title-scan" aria-hidden="true" />
+    </h3>
+  );
+}
+
 export default function PlantsGroup() {
   const sectionRef = useRef(null);
   const [activeImage, setActiveImage] = useState(null);
@@ -60,6 +80,104 @@ export default function PlantsGroup() {
       gsap.registerPlugin(ScrollTrigger);
 
       ctx = gsap.context(() => {
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: ".plants-heading",
+              start: "top 80%",
+              toggleActions: "restart none restart none",
+            },
+          })
+            .fromTo(
+              ".plants-heading .section-kicker",
+              { autoAlpha: 0, y: 14 },
+              { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }
+            )
+            .fromTo(
+              ".plant-heading-echo",
+              {
+                autoAlpha: 0,
+                clipPath: "inset(0 0 100% 0)",
+                scaleY: 1.54,
+                transformOrigin: "left bottom",
+              },
+              {
+                autoAlpha: 1,
+                clipPath: "inset(0 0 0% 0)",
+                scaleY: 1,
+                duration: 0.76,
+                stagger: 0.12,
+                ease: "power3.out",
+              },
+              "-=0.12"
+            )
+            .fromTo(
+              ".plant-heading-line",
+              {
+                autoAlpha: 0,
+                clipPath: "inset(0 0 100% 0)",
+                scaleY: 1.38,
+                filter: "blur(4px)",
+                letterSpacing: "0.035em",
+                transformOrigin: "left bottom",
+              },
+              {
+                autoAlpha: 1,
+                clipPath: "inset(0 0 0% 0)",
+                scaleY: 1,
+                filter: "blur(0px)",
+                letterSpacing: "0em",
+                duration: 0.92,
+                stagger: 0.14,
+                ease: "power4.out",
+              },
+              "-=0.46"
+            )
+            .to(
+              ".plant-heading-echo",
+              { autoAlpha: 0, duration: 0.38, stagger: 0.08, ease: "power2.out" },
+              "-=0.3"
+            )
+            .fromTo(
+              ".plant-heading-accent",
+              { autoAlpha: 0, scaleX: 0 },
+              { autoAlpha: 1, scaleX: 1, duration: 0.8, ease: "power3.out" },
+              "-=0.42"
+            );
+
+          gsap.utils.toArray(".plant-title").forEach((title) => {
+            const characters = title.querySelectorAll(".plant-title-char");
+            const scan = title.querySelector(".plant-title-scan");
+
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: title,
+                start: "top 84%",
+                toggleActions: "restart none restart none",
+              },
+            })
+              .fromTo(
+                characters,
+                { autoAlpha: 0, y: 22, filter: "blur(5px)", color: "rgba(223, 182, 90, 0.94)" },
+                {
+                  autoAlpha: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  color: "#f7f1ed",
+                  duration: 0.25,
+                  stagger: { each: 0.016, from: "random" },
+                  ease: "power2.out",
+                }
+              )
+              .fromTo(
+                scan,
+                { autoAlpha: 0, scaleX: 0 },
+                { autoAlpha: 1, scaleX: 1, duration: 0.48, ease: "power3.out" },
+                "-=0.24"
+              );
+          });
+        }
+
         gsap.utils.toArray(".plant-flow-path").forEach((path) => {
           const length = path.getTotalLength();
           gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
@@ -88,9 +206,71 @@ export default function PlantsGroup() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 70%",
+              toggleActions: "restart none restart none",
             },
           }
         );
+
+        // Staggered bento image entrance — each tile flies in from a unique direction
+        gsap.utils.toArray(".plant-image-grid").forEach((grid) => {
+          const tiles = grid.querySelectorAll(".plant-image-tile");
+          
+          // Different entrance directions for each tile position
+          const entrances = [
+            { x: -80, y: 60, rotation: -3 },   // Tile 1: from bottom-left
+            { x: 60, y: -50, rotation: 2 },     // Tile 2: from top-right
+            { x: -40, y: 80, rotation: -2 },    // Tile 3: from bottom-left
+            { x: 80, y: 60, rotation: 3 },      // Tile 4: from bottom-right
+          ];
+
+          tiles.forEach((tile, i) => {
+            const entrance = entrances[i] || entrances[0];
+            
+            gsap.fromTo(tile,
+              {
+                x: entrance.x,
+                y: entrance.y,
+                rotation: entrance.rotation,
+                scale: 0.85,
+                opacity: 0,
+                filter: "blur(8px)",
+              },
+              {
+                x: 0,
+                y: 0,
+                rotation: 0,
+                scale: 1,
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1.2,
+                delay: i * 0.15,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: grid,
+                  start: "top 80%",
+                  toggleActions: "restart none restart none",
+                },
+              }
+            );
+          });
+
+          // Parallax zoom — images slowly scale up as you scroll past
+          tiles.forEach((tile, i) => {
+            const img = tile.querySelector(".plant-image-main");
+            if (!img) return;
+            
+            gsap.to(img, {
+              scale: 1.12 + (i * 0.03),
+              ease: "none",
+              scrollTrigger: {
+                trigger: tile,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.5,
+              },
+            });
+          });
+        });
       }, sectionRef);
     }
 
@@ -124,8 +304,17 @@ export default function PlantsGroup() {
       <div className="plants-heading">
         <p className="section-kicker">Plants / Group</p>
         <h2>
-          Two operating hubs.
-          <span>One recycling ecosystem.</span>
+          <span className="plant-heading-mask">
+            <span className="plant-heading-line plant-heading-primary">Two operating hubs.</span>
+            <span className="plant-heading-echo" aria-hidden="true">Two operating hubs.</span>
+          </span>
+          <span className="plant-heading-mask">
+            <span className="plant-heading-line plant-heading-secondary">One recycling ecosystem.</span>
+            <span className="plant-heading-echo plant-heading-echo-secondary" aria-hidden="true">
+              One recycling ecosystem.
+            </span>
+          </span>
+          <span className="plant-heading-accent" aria-hidden="true" />
         </h2>
       </div>
 
@@ -153,7 +342,7 @@ export default function PlantsGroup() {
               }}
             >
               <span>{plant.eyebrow}</span>
-              <h3>{plant.title}</h3>
+              <AnimatedPlantTitle title={plant.title} />
               <small>{plant.subtitle}</small>
               <p>{plant.body}</p>
               {plant.extra && <p>{plant.extra}</p>}

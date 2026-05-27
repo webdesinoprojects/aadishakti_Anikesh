@@ -68,9 +68,10 @@ export default function FoundersRail() {
           ease: "none",
           scrollTrigger: {
             trigger: shell,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
+            pin: true,
+            start: "top top",
+            end: () => `+=${distance()}`,
+            scrub: 1,
             invalidateOnRefresh: true,
           },
         });
@@ -108,7 +109,7 @@ export default function FoundersRail() {
       aria-label="Founder profiles"
       style={{
         position: "relative",
-        zIndex: 3,
+        zIndex: 2,
         minHeight: "100vh",
         overflow: "hidden",
         padding: "clamp(74px, 9vh, 104px) 0 clamp(66px, 8vh, 92px)",

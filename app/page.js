@@ -5,6 +5,7 @@ import FoundersRail from "@/components/FoundersRail";
 import VisionMission from "@/components/VisionMission";
 import PlantsGroup from "@/components/PlantsGroup";
 import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const navItems = ["Home", "About Us", "Products", "Import", "News", "Gallery", "Contact"];
 
@@ -26,7 +27,18 @@ const stats = [
 
 export default function Home() {
   return (
-    <main className="home-page">
+    <SmoothScroll>
+    <main className="home-page hero-landing">
+      <div className="hero-opening" aria-hidden="true">
+        <span className="hero-opening-panel hero-opening-panel-left" />
+        <span className="hero-opening-panel hero-opening-panel-right" />
+        <div className="hero-opening-brand">
+          <span>AADISHAKTI</span>
+          <small>Lead recycling / Non-ferrous metals</small>
+          <i />
+        </div>
+      </div>
+
       <Header />
 
       <div className="ember-field" aria-hidden="true">
@@ -35,59 +47,84 @@ export default function Home() {
         <span />
       </div>
 
-      <section className="hero-section" aria-label="Aadishakti Group homepage">
-        <div className="hero-copy">
-          <p className="eyebrow">Aadishakti Group</p>
-          <h1>
-            <span className="headline-line">Lead recycling</span>
-            <span className="headline-line accent">at industrial scale.</span>
-          </h1>
+      <div className="stack-layer" style={{ zIndex: 1, backgroundColor: "transparent" }}>
+        <section className="hero-section" aria-label="Aadishakti Group homepage">
+          <div className="hero-copy">
+            <p className="eyebrow hero-eyebrow-enter">Aadishakti Group</p>
+            <h1 className="hero-headline">
+              <span className="hero-headline-mask">
+                <span className="headline-line hero-headline-line">Lead recycling</span>
+              </span>
+              <span className="hero-headline-mask">
+                <span className="headline-line accent hero-headline-line hero-headline-accent">
+                  at industrial scale.
+                </span>
+              </span>
+              <span className="hero-headline-rule" aria-hidden="true" />
+            </h1>
 
-          <div className="hero-content">
-            {content.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+            <div className="hero-content">
+              {content.map((paragraph, index) => (
+                <p className="hero-body-enter" style={{ "--hero-line": index }} key={paragraph}>
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <div className="hero-highlights hero-detail-enter" aria-label="Company highlights">
+              {highlights.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+
+            <div className="hero-actions hero-actions-enter">
+              <a className="primary-action" href="#">
+                Explore Products
+              </a>
+              <a className="secondary-action" href="#">
+                Contact Us
+              </a>
+            </div>
           </div>
 
-          <div className="hero-highlights" aria-label="Company highlights">
-            {highlights.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
+          <div id="model-interaction-zone" className="model-stage" aria-label="Draggable Aadishakti battery model">
+            {/* Interaction zone wrapper */}
           </div>
+        </section>
+      </div>
 
-          <div className="hero-actions">
-            <a className="primary-action" href="#">
-              Explore Products
-            </a>
-            <a className="secondary-action" href="#">
-              Contact Us
-            </a>
-          </div>
-        </div>
+      <div className="stack-layer" style={{ zIndex: 2, backgroundColor: "transparent" }}>
+        <section className="stats-strip" aria-label="Aadishakti Group statistics">
+          {stats.map((stat) => (
+            <div className="stats-item" key={stat.label}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </div>
+          ))}
+        </section>
+      </div>
 
-        <div id="model-interaction-zone" className="model-stage" aria-label="Draggable Aadishakti battery model">
-          {/* Interaction zone wrapper */}
-        </div>
-      </section>
+      <div className="stack-layer" style={{ zIndex: 3, backgroundColor: "transparent" }}>
+        <FoundersRail />
+      </div>
 
-      <section className="stats-strip" aria-label="Aadishakti Group statistics">
-        {stats.map((stat) => (
-          <div className="stats-item" key={stat.label}>
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </div>
-        ))}
-      </section>
+      <div className="stack-layer" style={{ zIndex: 4, backgroundColor: "transparent" }}>
+        <VisionMission />
+      </div>
 
-      <FoundersRail />
-      <VisionMission />
-      <PlantsGroup />
-      <Footer />
+      <div className="stack-layer" style={{ zIndex: 5, backgroundColor: "transparent" }}>
+        <PlantsGroup />
+      </div>
+
+      <div className="stack-layer" style={{ zIndex: 6, position: "relative", backgroundColor: "transparent" }}>
+        <Footer />
+      </div>
       
       {/* Absolute positioned model viewer in background */}
-      <div className="fixed inset-0 z-0 pointer-events-none" style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+      <div className="fixed inset-0 z-0 pointer-events-none hero-model-enter" style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
         <ModelViewer />
       </div>
     </main>
+    </SmoothScroll>
   );
 }
