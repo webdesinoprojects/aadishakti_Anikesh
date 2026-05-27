@@ -600,63 +600,6 @@ h1 .accent {
   outline: none;
 }
 
-.foundry-lava-flood {
-  --flood-progress: 0;
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: calc(var(--flood-progress) * 0.88);
-  clip-path: inset(calc((1 - var(--flood-progress)) * 102%) 0 0);
-  background:
-    radial-gradient(circle at 68% 18%, rgba(255, 237, 142, 0.88), transparent 15%),
-    radial-gradient(circle at 44% 58%, rgba(255, 131, 36, 0.72), transparent 30%),
-    linear-gradient(0deg, #e53412 0%, #ed5319 42%, #ff9b32 78%, #ffd55c 100%);
-  mix-blend-mode: screen;
-  filter: saturate(1.18) contrast(1.05);
-  will-change: clip-path, opacity;
-}
-
-.foundry-lava-flood::before {
-  content: "";
-  position: absolute;
-  top: -5vh;
-  left: -8vw;
-  width: 116vw;
-  height: clamp(56px, 10vh, 108px);
-  background:
-    radial-gradient(ellipse at 10% 70%, #ffcd58 0 7%, transparent 8%),
-    radial-gradient(ellipse at 38% 54%, #fff0a1 0 5%, transparent 6%),
-    radial-gradient(ellipse at 72% 72%, #ffa62d 0 9%, transparent 10%),
-    linear-gradient(180deg, transparent, rgba(255, 172, 48, 0.95) 52%, #ee4d17 100%);
-  filter: blur(2px) drop-shadow(0 -8px 28px rgba(255, 111, 22, 0.9));
-  animation: foundry-flood-surface 2.8s ease-in-out infinite alternate;
-}
-
-.foundry-lava-flood::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 75%, rgba(255, 223, 102, 0.26), transparent 15%),
-    radial-gradient(circle at 60% 62%, rgba(255, 237, 150, 0.22), transparent 11%),
-    radial-gradient(circle at 86% 32%, rgba(255, 154, 42, 0.3), transparent 18%);
-  animation: foundry-flood-glow 3.6s ease-in-out infinite alternate;
-}
-
-@keyframes foundry-flood-surface {
-  to {
-    transform: translate3d(3.5vw, -7px, 0) scaleY(1.12);
-  }
-}
-
-@keyframes foundry-flood-glow {
-  to {
-    opacity: 0.54;
-    transform: translate3d(-2vw, 2vh, 0) scale(1.08);
-  }
-}
-
 .drag-hint {
   position: absolute;
   right: clamp(10px, 6vw, 90px);
@@ -2282,10 +2225,6 @@ h1 .accent {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-opening {
-    display: none;
-  }
-
-  .foundry-lava-flood {
     display: none;
   }
 

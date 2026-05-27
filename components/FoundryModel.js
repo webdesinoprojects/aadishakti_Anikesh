@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 const MODEL_URL = "/models/AadiShakti_Foundry.glb";
@@ -32,39 +32,173 @@ const dropletShaderMaterial = new THREE.ShaderMaterial({
     varying vec2 vUv;
     
     void main() {
-      // vUv.x goes from 0 (mouth) to 1 (mold)
       if (vUv.x > uProgress) {
         discard;
       }
       
-      // Create droplet effect
-      // dropPhase oscillates between -1 and 1 along the stream
-      float dropPhase = sin(vUv.x * 60.0 - uTime * 25.0);
-      
-      // Threshold determines how much of the stream is discarded to form drops
-      // It starts at -1.0 (fully solid) at the mouth, and transitions to 0.6 (sparse drops) at the mold
-      float threshold = mix(-1.0, 0.6, vUv.x);
-      
-      if (dropPhase < threshold) {
-        discard;
-      }
-      
-      // Glow intensity based on the droplet center
-      float heat = (dropPhase - threshold) / (1.0 - threshold); 
-      vec3 finalColor = mix(uColorHot, uColorCore, heat * 0.8);
+      float flow = sin(vUv.x * 28.0 - uTime * 10.0) * 0.5 + 0.5;
+      float hotCore = smoothstep(0.18, 0.82, flow);
+      vec3 finalColor = mix(uColorHot, uColorCore, hotCore * 0.68);
       
       gl_FragColor = vec4(finalColor, 1.0);
     }
   `
 });
 
-export default function FoundryModel({ groupRef, animState, overflowLayerRef }) {
+const moltenFloodShaderMaterial = new THREE.ShaderMaterial({
+  transparent: true,
+  depthTest: false,
+  depthWrite: false,
+  toneMapped: false,
+  uniforms: {
+    uLeak: { value: 0.0 },
+    uPool: { value: 0.0 },
+    uProgress: { value: 0.0 },
+    uTime: { value: 0.0 },
+    uOrigin: { value: new THREE.Vector2(0.67, 0.54) }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+
+    void main() {
+      vUv = uv;
+      gl_Position = vec4(position.xy, 0.0, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform float uLeak;
+    uniform float uPool;
+    uniform float uProgress;
+    uniform float uTime;
+    uniform vec2 uOrigin;
+    varying vec2 vUv;
+
+    float random(vec2 point) {
+      return fract(sin(dot(point, vec2(127.1, 311.7))) * 43758.5453123);
+    }
+
+    float noise(vec2 point) {
+      vec2 cell = floor(point);
+      vec2 local = fract(point);
+      vec2 blend = local * local * (3.0 - 2.0 * local);
+
+      float a = random(cell);
+      float b = random(cell + vec2(1.0, 0.0));
+      float c = random(cell + vec2(0.0, 1.0));
+      float d = random(cell + vec2(1.0, 1.0));
+
+      return mix(mix(a, b, blend.x), mix(c, d, blend.x), blend.y);
+    }
+
+    float fbm(vec2 point) {
+      float value = 0.0;
+      float amplitude = 0.52;
+      for (int i = 0; i < 5; i++) {
+        value += amplitude * noise(point);
+        point = point * 2.04 + vec2(5.3, 1.7);
+        amplitude *= 0.5;
+      }
+      return value;
+    }
+
+    void main() {
+      float poolVisible = smoothstep(0.003, 0.06, uPool + uProgress);
+      float surfaceNoise = fbm(vec2(vUv.x * 4.2 - uTime * 0.1, uTime * 0.2));
+      float rollingSurface = sin(vUv.x * 17.0 + uTime * 1.5) * 0.012;
+      float surface = 0.018 + uPool * 0.075 + uProgress * 1.08
+        + (surfaceNoise - 0.5) * 0.11
+        + rollingSurface;
+      float poolWidth = mix(0.022, 0.46, uPool);
+      float spreadingPool = 1.0 - smoothstep(
+        poolWidth,
+        poolWidth + 0.065,
+        abs(vUv.x - uOrigin.x) + (noise(vec2(vUv.y * 20.0, uTime * 0.1)) - 0.5) * 0.018
+      );
+      float fullFloor = smoothstep(0.01, 0.14, uProgress);
+      float horizontalCoverage = mix(spreadingPool, 1.0, fullFloor);
+      float moltenBody = (1.0 - smoothstep(surface - 0.018, surface + 0.035, vUv.y))
+        * horizontalCoverage
+        * poolVisible;
+
+      vec2 flow = vec2(vUv.x * 3.6 + uTime * 0.07, vUv.y * 5.0 - uTime * 0.28);
+      float baseFlow = fbm(flow);
+      float hotFlow = fbm(flow * 2.55 + vec2(-uTime * 0.18, uTime * 0.09));
+      float veins = smoothstep(0.56, 0.77, hotFlow + baseFlow * 0.25);
+
+      vec3 cooled = vec3(0.18, 0.012, 0.004);
+      vec3 orange = vec3(1.08, 0.13, 0.014);
+      vec3 yellow = vec3(2.4, 0.84, 0.12);
+      vec3 color = mix(cooled, orange, smoothstep(0.12, 0.82, baseFlow));
+      color = mix(color, yellow, veins * 0.84);
+
+      float hotLip = 1.0 - smoothstep(0.0, 0.052, abs(vUv.y - surface));
+      color += vec3(2.1, 0.48, 0.035) * hotLip;
+
+      float leakVisible = smoothstep(0.02, 0.18, uLeak);
+      float streamBottom = mix(uOrigin.y - 0.015, 0.055, smoothstep(0.0, 0.72, uLeak));
+      float sway = sin(vUv.y * 23.0 - uTime * 4.6) * mix(0.002, 0.009, uLeak);
+      float streamCenter = uOrigin.x + sway;
+      float streamWidth = mix(0.005, 0.016, uLeak) + (1.0 - vUv.y) * 0.006;
+      float verticalStream = smoothstep(streamBottom - 0.008, streamBottom + 0.014, vUv.y)
+        * (1.0 - smoothstep(uOrigin.y - 0.004, uOrigin.y + 0.014, vUv.y));
+      float connectedStream = (1.0 - smoothstep(streamWidth, streamWidth + 0.005, abs(vUv.x - streamCenter)))
+        * verticalStream
+        * leakVisible;
+      float landingGlow = (1.0 - smoothstep(0.012, 0.052, length(vec2((vUv.x - uOrigin.x) * 0.7, vUv.y - 0.04))))
+        * smoothstep(0.64, 0.94, uLeak);
+      float fallingMolten = clamp(connectedStream + landingGlow, 0.0, 1.0);
+      color = mix(color, vec3(2.5, 0.96, 0.18), fallingMolten * 0.74);
+
+      float alpha = max(
+        moltenBody * mix(0.86, 0.97, uProgress),
+        fallingMolten * smoothstep(0.0, 0.14, uLeak)
+      );
+      gl_FragColor = vec4(color, alpha);
+    }
+  `
+});
+
+function MoltenFlood({ animState, spillOriginRef }) {
+  const material = useMemo(() => moltenFloodShaderMaterial.clone(), []);
+  const floodRef = useRef();
+
+  useFrame((state) => {
+    material.uniforms.uTime.value = state.clock.elapsedTime;
+    material.uniforms.uLeak.value = animState?.current?.leakProgress || 0;
+    material.uniforms.uPool.value = animState?.current?.poolProgress || 0;
+    material.uniforms.uProgress.value = animState?.current?.floodProgress || 0;
+    material.uniforms.uOrigin.value.copy(spillOriginRef.current);
+
+    if (floodRef.current) {
+      floodRef.current.visible = Boolean(
+        animState?.current?.foundryInView
+        && (
+          animState.current.leakProgress > 0.001
+          || animState.current.poolProgress > 0.001
+          || animState.current.floodProgress > 0.001
+        )
+      );
+    }
+  });
+
+  return (
+    <mesh ref={floodRef} visible={false} frustumCulled={false} renderOrder={1000}>
+      <planeGeometry args={[2, 2]} />
+      <primitive object={material} attach="material" />
+    </mesh>
+  );
+}
+
+export default function FoundryModel({ groupRef, animState }) {
+  const { camera } = useThree();
   const { scene } = useGLTF(MODEL_URL);
   
   const streamMaterialRef = useRef(dropletShaderMaterial.clone());
   const streamRef = useRef();
   const dwellTimeRef = useRef(0);
-  const floodProgressRef = useRef(-1);
+  const moldNodeRef = useRef();
+  const spillPointRef = useRef(new THREE.Vector3());
+  const spillOriginRef = useRef(new THREE.Vector2(0.67, 0.54));
 
   const SPLIT_OFFSET = 0.45; // Distance to push each half apart
 
@@ -118,6 +252,9 @@ export default function FoundryModel({ groupRef, animState, overflowLayerRef }) 
         if (name === 'lava_crucible' || name === 'lava_mold') {
           node.material = lavaMaterial;
         }
+        if (name === 'lava_mold') {
+          moldNodeRef.current = node;
+        }
       }
     });
   }, [sceneClone, lavaMaterial]);
@@ -164,24 +301,48 @@ export default function FoundryModel({ groupRef, animState, overflowLayerRef }) 
     if (!animState?.current) return;
     
     const p = animState.current.pourProgress || 0;
-    const foundryIsHeld = animState.current.modelSwap > 0.82 && animState.current.modelSwap < 1.18;
+    const foundersShell = document.querySelector(".founder-scroll-shell");
+    const foundersBounds = foundersShell?.getBoundingClientRect();
+    const plantsBounds = document.querySelector(".plants-section")?.getBoundingClientRect();
+    const plantsEntering = Boolean(plantsBounds && plantsBounds.top < window.innerHeight * 0.98);
+    const foundryInView = Boolean(
+      foundersBounds
+      && foundersBounds.top < window.innerHeight * 0.72
+      && foundersBounds.bottom > window.innerHeight * 0.18
+      && !plantsEntering
+      && animState.current.modelSwap > 0.42
+      && animState.current.modelSwap < 1.4
+    );
+    animState.current.foundryInView = foundryInView;
 
-    if (foundryIsHeld) {
-      dwellTimeRef.current = Math.min(dwellTimeRef.current + delta, 8);
+    if (foundryInView) {
+      dwellTimeRef.current = Math.min(dwellTimeRef.current + delta, 13);
     } else {
-      dwellTimeRef.current = Math.max(dwellTimeRef.current - delta * 3.2, 0);
+      dwellTimeRef.current = 0;
     }
 
     const dwellFill = THREE.MathUtils.smoothstep(dwellTimeRef.current, 0.5, 2.6);
     const fillProgress = Math.max(THREE.MathUtils.clamp(p, 0.0, 1.0), dwellFill);
-    const floodProgress = THREE.MathUtils.smoothstep(dwellTimeRef.current, 3.15, 7.1);
+    const leakProgress = foundryInView ? THREE.MathUtils.smoothstep(dwellTimeRef.current, 1.8, 2.8) : 0;
+    const poolProgress = foundryInView ? THREE.MathUtils.smoothstep(dwellTimeRef.current, 2.9, 6.4) : 0;
+    const floodProgress = foundryInView ? THREE.MathUtils.smoothstep(dwellTimeRef.current, 6.5, 9.4) : 0;
+    animState.current.leakProgress = leakProgress;
+    animState.current.poolProgress = poolProgress;
+    animState.current.floodProgress = floodProgress;
 
-    if (
-      overflowLayerRef?.current &&
-      Math.abs(floodProgress - floodProgressRef.current) > 0.001
-    ) {
-      overflowLayerRef.current.style.setProperty("--flood-progress", floodProgress.toFixed(4));
-      floodProgressRef.current = floodProgress;
+    if (moldNodeRef.current?.geometry.boundingBox) {
+      const box = moldNodeRef.current.geometry.boundingBox;
+      spillPointRef.current.set(
+        THREE.MathUtils.lerp(box.min.x, box.max.x, 0.12),
+        box.max.y,
+        (box.min.z + box.max.z) * 0.5
+      );
+      moldNodeRef.current.localToWorld(spillPointRef.current);
+      spillPointRef.current.project(camera);
+      spillOriginRef.current.set(
+        THREE.MathUtils.clamp(spillPointRef.current.x * 0.5 + 0.5, 0.04, 0.96),
+        THREE.MathUtils.clamp(spillPointRef.current.y * 0.5 + 0.5, 0.08, 0.94)
+      );
     }
     
     if (streamMaterialRef.current) {
@@ -197,20 +358,23 @@ export default function FoundryModel({ groupRef, animState, overflowLayerRef }) 
   });
 
   return (
-    <group ref={groupRef} scale={0.45} position={[0, -0.7, 0]} rotation={[0, 0, 0]}>
-      {/* Keep the exported side elevation as the default draggable view. */}
-      <group rotation={[0, 0, 0]}>
-        <primitive object={sceneClone} />
-        
-        {streamGeometry && (
-          <mesh 
-            ref={streamRef} 
-            geometry={streamGeometry} 
-            material={streamMaterialRef.current} 
-          />
-        )}
+    <>
+      <group ref={groupRef} scale={0.45} position={[0, -0.7, 0]} rotation={[0, 0, 0]}>
+        {/* Keep the exported side elevation as the default draggable view. */}
+        <group rotation={[0, 0, 0]}>
+          <primitive object={sceneClone} />
+
+          {streamGeometry && (
+            <mesh
+              ref={streamRef}
+              geometry={streamGeometry}
+              material={streamMaterialRef.current}
+            />
+          )}
+        </group>
       </group>
-    </group>
+      <MoltenFlood animState={animState} spillOriginRef={spillOriginRef} />
+    </>
   );
 }
 

@@ -15,7 +15,7 @@ if (typeof window !== "undefined") {
 
 const MODEL_URL = "/models/aadishakti_battery_v3.glb";
 
-function BatteryModel({ overflowLayerRef }) {
+function BatteryModel() {
   const { scene } = useGLTF(MODEL_URL);
   const model = useMemo(() => scene.clone(true), [scene]);
   const materialGroups = useRef({ body: [], labels: [] });
@@ -28,6 +28,10 @@ function BatteryModel({ overflowLayerRef }) {
     gravityDrop: 0, 
     modelSwap: 0, 
     pourProgress: 0,
+    foundryInView: false,
+    leakProgress: 0,
+    poolProgress: 0,
+    floodProgress: 0,
     solidOpacity: 1,
     wireOpacity: 0.15
   });
@@ -548,12 +552,7 @@ function BatteryModel({ overflowLayerRef }) {
     </group>
     
     {/* The New Foundry Model Container */}
-    <FoundryModel
-      groupRef={foundryGroupRef}
-      animState={animState}
-      dragState={dragState}
-      overflowLayerRef={overflowLayerRef}
-    />
+    <FoundryModel groupRef={foundryGroupRef} animState={animState} dragState={dragState} />
     </>
   );
 }
@@ -574,8 +573,6 @@ function CameraSetup() {
 }
 
 export default function ModelViewer() {
-  const overflowLayerRef = useRef();
-
   return (
     <div className="model-viewer">
       <Canvas 
@@ -593,13 +590,12 @@ export default function ModelViewer() {
         <pointLight position={[3.2, -2.4, 2.8]} intensity={20} color="#dfb65a" />
         <Suspense fallback={null}>
           <Environment preset="city" />
-          <BatteryModel overflowLayerRef={overflowLayerRef} />
+          <BatteryModel />
           <EffectComposer disableNormalPass>
             <Bloom luminanceThreshold={1} mipmapBlur intensity={1.5} />
           </EffectComposer>
         </Suspense>
       </Canvas>
-      <div ref={overflowLayerRef} className="foundry-lava-flood" aria-hidden="true" />
     </div>
   );
 }
