@@ -53,6 +53,8 @@ export default function VisionMission() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 78%",
+              end: "top 38%",
+              scrub: 1,
             },
           }
         );
@@ -69,6 +71,8 @@ export default function VisionMission() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 72%",
+              end: "top 34%",
+              scrub: 1,
             },
           }
         );

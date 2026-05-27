@@ -93,7 +93,7 @@ export default function Home() {
         </section>
       </div>
 
-      <div className="stack-layer" style={{ zIndex: 2, backgroundColor: "transparent" }}>
+      <div className="stack-layer stack-card" style={{ zIndex: 2, backgroundColor: "transparent" }}>
         <section className="stats-strip" aria-label="Aadishakti Group statistics">
           {stats.map((stat) => (
             <div className="stats-item" key={stat.label}>
@@ -104,15 +104,15 @@ export default function Home() {
         </section>
       </div>
 
-      <div className="stack-layer" style={{ zIndex: 3, backgroundColor: "transparent" }}>
+      <div className="stack-layer stack-card" style={{ zIndex: 3, backgroundColor: "transparent" }}>
         <FoundersRail />
       </div>
 
-      <div className="stack-layer" style={{ zIndex: 4, backgroundColor: "transparent" }}>
+      <div className="stack-layer stack-card" style={{ zIndex: 4, backgroundColor: "transparent" }}>
         <VisionMission />
       </div>
 
-      <div className="stack-layer" style={{ zIndex: 5, backgroundColor: "transparent" }}>
+      <div className="stack-layer stack-card" style={{ zIndex: 5, backgroundColor: "transparent" }}>
         <PlantsGroup />
       </div>
 

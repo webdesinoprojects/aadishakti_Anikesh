@@ -2,12 +2,13 @@
 
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { PresentationControls, OrbitControls, useGLTF, Environment } from "@react-three/drei";
+import { Environment, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import FoundryModel from "./FoundryModel";
+import IngotModel from "./IngotModel";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -21,22 +22,18 @@ function BatteryModel() {
   const materialGroups = useRef({ body: [], labels: [] });
   const groupRef = useRef();
   const foundryGroupRef = useRef();
+  const ingotGroupRef = useRef();
   const modelRef = useRef();
   const mouseNDC = useRef(new THREE.Vector2(-999, -999));
   const animState = useRef({ 
     explosion: 0, 
     gravityDrop: 0, 
     modelSwap: 0, 
-    pourProgress: 0,
-    foundryInView: false,
-    leakProgress: 0,
-    poolProgress: 0,
-    floodProgress: 0,
-    solidOpacity: 1,
-    wireOpacity: 0.15
+    productReveal: 0,
+    solidOpacity: 0,
+    wireOpacity: 1
   });
   const linesMaterialRef = useRef();
-  const solidMaterialRef = useRef();
 
   const fit = useMemo(() => {
     const box = new THREE.Box3().setFromObject(model);
@@ -190,6 +187,7 @@ function BatteryModel() {
         metalness: 0.54,
         transparent: true,
         opacity: 1,
+        depthWrite: false,
       });
 
       object.material = material;
@@ -248,6 +246,15 @@ function BatteryModel() {
           );
         }
 
+        if (ingotGroupRef.current) {
+          ingotGroupRef.current.rotation.y += deltaMove.x * 0.005;
+          ingotGroupRef.current.rotation.x = THREE.MathUtils.clamp(
+            ingotGroupRef.current.rotation.x - deltaMove.y * 0.005,
+            -Math.PI / 4,
+            Math.PI / 4
+          );
+        }
+
         dragState.current.previousMousePosition = { x: e.clientX, y: e.clientY };
       }
     };
@@ -263,24 +270,27 @@ function BatteryModel() {
     };
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (typeof window === "undefined") return;
-    
-    // Crossfade models (Swap goes from 0 -> 1 -> 2)
-    const swap = animState.current.modelSwap;
-    const batteryScale = swap <= 1.0 ? 1.0 - swap : swap - 1.0;
-    
-    // Base scale vs Swap scale
-    const foundrySwapScale = swap <= 1.0 ? swap : 2.0 - swap;
+
+    const foundryMix = THREE.MathUtils.clamp(animState.current.modelSwap, 0, 1);
+    const productReveal = THREE.MathUtils.clamp(animState.current.productReveal, 0, 1);
+    const batteryScale = 1 - foundryMix;
+    const foundryScale = foundryMix * (1 - productReveal);
     const baseFoundryScale = window.innerWidth < 768 ? 0.48 : 0.7;
+    const baseIngotScale = window.innerWidth < 768 ? 0.62 : 0.92;
 
     if (groupRef.current) {
       groupRef.current.scale.setScalar(fit.scale * batteryScale);
       groupRef.current.visible = batteryScale > 0.01;
     }
     if (foundryGroupRef.current) {
-      foundryGroupRef.current.scale.setScalar(fit.scale * baseFoundryScale * foundrySwapScale);
-      foundryGroupRef.current.visible = foundrySwapScale > 0.01;
+      foundryGroupRef.current.scale.setScalar(fit.scale * baseFoundryScale * foundryScale);
+      foundryGroupRef.current.visible = foundryScale > 0.01;
+    }
+    if (ingotGroupRef.current) {
+      ingotGroupRef.current.scale.setScalar(baseIngotScale * productReveal);
+      ingotGroupRef.current.visible = productReveal > 0.01;
     }
 
     // Material Logic for Battery (Solid vs Wireframe)
@@ -316,131 +326,103 @@ function BatteryModel() {
     const ctx = gsap.context(() => {
       if (!groupRef.current) return;
 
-      // 1. Initial State for Desktop Fullscreen Layout
+      // Start in the same holographic battery language used through the experience.
       gsap.set(groupRef.current.position, { x: 2.2, y: 0.1, z: 0 });
-      gsap.set(groupRef.current.scale, { x: fit.scale, y: fit.scale, z: fit.scale });
-      
-      // 2. Scroll to Founders section: Trigger true particle explosion
-      gsap.to(animState.current, {
-        explosion: 1,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: ".founder-scroll-shell",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.position, {
-        x: 0,
-        y: 0.5,
-        scrollTrigger: {
-          trigger: ".founder-scroll-shell",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.scale, {
-        x: fit.scale * 1.8,
-        y: fit.scale * 1.8,
-        z: fit.scale * 1.8,
-        scrollTrigger: {
-          trigger: ".founder-scroll-shell",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.rotation, {
-        y: Math.PI * 0.8,
-        x: 0.4,
-        scrollTrigger: {
-          trigger: ".founder-scroll-shell",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
-
-      // 3. Scroll to Plants section: Re-assemble parts into battery form
-      gsap.to(animState.current, {
-        explosion: 0,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: ".plants-section",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.position, {
-        x: 2.35,
-        y: 0.2,
-        scrollTrigger: {
-          trigger: ".plants-section",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.scale, {
-        x: fit.scale * 0.65,
-        y: fit.scale * 0.65,
-        z: fit.scale * 0.65,
-        scrollTrigger: {
-          trigger: ".plants-section",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
-      
-      gsap.to(groupRef.current.rotation, {
-        y: Math.PI * 2.0, // Face exactly front for the perfect battery posture
-        x: 0.1,
-        scrollTrigger: {
-          trigger: ".plants-section",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
+      gsap.set(groupRef.current.rotation, { x: 0.04, y: -0.34, z: 0 });
 
       if (foundryGroupRef.current) {
         gsap.set(foundryGroupRef.current.position, { x: 0.78, y: -0.02, z: 0 });
+        gsap.set(foundryGroupRef.current.rotation, { x: 0.04, y: -0.34, z: 0 });
       }
-      
-      // PHASE 2: Founders Section (Foundry Swap + Pouring Animation)
-      const foundersTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".founder-scroll-shell",
-          start: "top bottom",
-          end: "bottom top", // Automatically syncs with the exact length of the horizontal scroll!
-          scrub: 1.5,
-        }
-      });
-      
-      // Swap to Foundry model
-      foundersTl.to(animState.current, {
-        modelSwap: 1,
-        ease: "power2.inOut",
-        duration: 0.2
-      }, 0);
-      
-      // Pouring animation triggers while in Founders section
-      foundersTl.to(animState.current, {
-        pourProgress: 1,
-        ease: "none",
-        duration: 0.8
-      }, 0.2);
 
-      // PHASE 3: Plants Section (Wireframe Battery Swap)
+      if (ingotGroupRef.current) {
+        gsap.set(ingotGroupRef.current.position, { x: 1.72, y: -0.12, z: 0 });
+        gsap.set(ingotGroupRef.current.rotation, { x: 0.12, y: -0.42, z: 0.02 });
+      }
+
+      // ----------------------------------------------------------------
+      // Opening journey. From the moment the page loads the battery is
+      // driven by scroll (the same scroll-rotation language used in the
+      // closing ingot section), then crossfades into the matching
+      // holographic furnace. Mapped to a fixed pixel span (0 -> 2x
+      // viewport) so the sticky/pinned layers below can't skew the timing.
+      // ----------------------------------------------------------------
+      const openingTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero-landing",
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          scrub: 1.5,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      openingTl
+        // Hero beat — battery reacts to scroll straight away (0 -> 1x vh).
+        .to(groupRef.current.rotation, { y: 0.55, x: 0.12, ease: "none", duration: 0.5 }, 0)
+        .to(groupRef.current.position, { x: 1.92, y: 0.18, ease: "none", duration: 0.5 }, 0)
+        // Founders beat — battery rotates further and becomes the furnace (1x -> 2x vh).
+        .to(groupRef.current.rotation, { y: Math.PI * 0.52, x: 0.16, ease: "none", duration: 0.5 }, 0.5)
+        .to(groupRef.current.position, { x: 1.5, y: 0.06, ease: "none", duration: 0.5 }, 0.5)
+        .to(animState.current, { modelSwap: 1, ease: "power2.inOut", duration: 0.42 }, 0.54)
+        .to(foundryGroupRef.current.rotation, { y: Math.PI * 0.36, x: 0.08, ease: "none", duration: 0.4 }, 0.6);
+
+      // Stacking depth — each outgoing panel sinks back and dims as the next
+      // tinted panel rises over it (the card-stack feel). Only the panels
+      // BEFORE the pinned Founders rail are transformed here, so the pin is
+      // never wrapped in a transform (which would break its fixed positioning).
+      gsap.fromTo(
+        ".hero-section",
+        { scale: 1, autoAlpha: 1 },
+        {
+          scale: 0.92,
+          autoAlpha: 0.32,
+          transformOrigin: "center top",
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-landing",
+            start: "top top",
+            end: () => "+=" + window.innerHeight,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+
+      gsap.to(".stats-strip", {
+        scale: 0.93,
+        autoAlpha: 0.4,
+        transformOrigin: "center top",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".hero-landing",
+          start: () => "+=" + window.innerHeight,
+          end: () => "+=" + window.innerHeight * 2,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Stat figures lock in place and reveal as their layer scrolls up.
+      gsap.fromTo(
+        ".stats-item",
+        { yPercent: 70, autoAlpha: 0 },
+        {
+          yPercent: 0,
+          autoAlpha: 1,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".hero-landing",
+            start: () => "+=" + window.innerHeight * 0.5,
+            end: () => "+=" + window.innerHeight * 0.95,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+
+      // The manufacturing output is ingots, revealed as the Plants section arrives.
       const plantsTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".plants-section",
@@ -449,74 +431,16 @@ function BatteryModel() {
           scrub: 1.5,
         }
       });
-      
-      // Disintegrate Foundry and bring back Battery
-      plantsTl.to(animState.current, {
-        modelSwap: 2,
-        solidOpacity: 0,    // Battery returns, but with NO solid fill
-        wireOpacity: 1.0,   // Battery returns FULLY wireframe
-        ease: "power2.inOut"
-      }, 0);
-      
-      // Shift Battery to right center and make it small for Plants section
-      plantsTl.to(groupRef.current.position, {
-        x: 1.6,
-        y: 0.0,
-        z: 0,
-        ease: "power2.inOut"
-      }, 0);
-      
-      plantsTl.to(groupRef.current.scale, {
-        x: fit.scale * 0.35,
-        y: fit.scale * 0.35,
-        z: fit.scale * 0.35,
-        ease: "power2.inOut"
-      }, 0);
-      
-      plantsTl.to(groupRef.current.rotation, {
-        y: Math.PI * 2.2,
-        x: 0.2,
-        ease: "power2.inOut"
-      }, 0);
 
-      // PARTICLE EXPLOSION (Footer)
-      gsap.to(animState.current, {
-        explosion: 1,
-        ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: ".site-footer",
-          start: "top bottom",
-          end: "top center",
-          scrub: 1.2,
-        },
-      });
+      plantsTl
+        .to(animState.current, { productReveal: 1, ease: "power2.inOut", duration: 0.4 }, 0)
+        .to(foundryGroupRef.current.rotation, { y: Math.PI * 0.78, ease: "none", duration: 0.34 }, 0)
+        .to(ingotGroupRef.current.position, { x: 1.55, y: 0, ease: "none", duration: 0.8 }, 0)
+        .to(ingotGroupRef.current.rotation, { y: Math.PI * 0.46, x: 0.16, ease: "none", duration: 0.8 }, 0);
 
-      gsap.to(groupRef.current.position, {
-        x: 0,
-        y: 0.8,
-        scrollTrigger: {
-          trigger: ".site-footer",
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.scale, {
-        x: fit.scale * 2.0,
-        y: fit.scale * 2.0,
-        z: fit.scale * 2.0,
-        scrollTrigger: {
-          trigger: ".site-footer",
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: 1.2,
-        },
-      });
-
-      gsap.to(groupRef.current.rotation, {
-        y: Math.PI * 4.2,
-        x: 0.2,
+      gsap.to(ingotGroupRef.current.rotation, {
+        y: Math.PI * 1.25,
+        x: 0.1,
         scrollTrigger: {
           trigger: ".site-footer",
           start: "top bottom",
@@ -551,8 +475,8 @@ function BatteryModel() {
       </group>
     </group>
     
-    {/* The New Foundry Model Container */}
     <FoundryModel groupRef={foundryGroupRef} animState={animState} dragState={dragState} />
+    <IngotModel groupRef={ingotGroupRef} animState={animState} />
     </>
   );
 }

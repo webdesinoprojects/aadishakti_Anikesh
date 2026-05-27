@@ -113,9 +113,8 @@ export default function FoundersRail() {
         minHeight: "100vh",
         overflow: "hidden",
         padding: "clamp(74px, 9vh, 104px) 0 clamp(66px, 8vh, 92px)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-        background:
-          "radial-gradient(circle at 18% 14%, rgba(255,51,43,0.08), transparent 26%), linear-gradient(180deg, rgba(255,255,255,0.012), rgba(0,0,0,0.14))",
+        borderBottom: 0,
+        background: "transparent",
       }}
     >
       <div

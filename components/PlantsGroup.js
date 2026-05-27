@@ -85,7 +85,8 @@ export default function PlantsGroup() {
             scrollTrigger: {
               trigger: ".plants-heading",
               start: "top 80%",
-              toggleActions: "restart none restart none",
+              end: "top 34%",
+              scrub: 1,
             },
           })
             .fromTo(
@@ -153,7 +154,8 @@ export default function PlantsGroup() {
               scrollTrigger: {
                 trigger: title,
                 start: "top 84%",
-                toggleActions: "restart none restart none",
+                end: "top 48%",
+                scrub: 1,
               },
             })
               .fromTo(
@@ -206,7 +208,8 @@ export default function PlantsGroup() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 70%",
-              toggleActions: "restart none restart none",
+              end: "top 34%",
+              scrub: 1,
             },
           }
         );
@@ -243,12 +246,12 @@ export default function PlantsGroup() {
                 opacity: 1,
                 filter: "blur(0px)",
                 duration: 1.2,
-                delay: i * 0.15,
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: grid,
                   start: "top 80%",
-                  toggleActions: "restart none restart none",
+                  end: "top 44%",
+                  scrub: 1,
                 },
               }
             );
